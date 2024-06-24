@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { GridBackgroundDemo } from "./components/ui/GridBackground";
+
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +24,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <ClerkProvider>
+    <html lang="en" className="dark">
+      <body className={inter.className}>
+        <GridBackgroundDemo>
+        {children}
+        </GridBackgroundDemo>
+        </body>
     </html>
+    </ClerkProvider>
   );
 }
